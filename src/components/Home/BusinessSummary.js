@@ -1,31 +1,40 @@
 import React from 'react';
-import './BusinessSummary.css';
 import { faClock, faUserGroup, faComputer } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const BusinessSummary = () => {
     return (
-        <div className='container'>
-            <div className="row">
-                <h1 className='text-primary text-center mt-5'>Business Summary</h1>
-                    <div className="summary-container">
-                    <div>
-                        <FontAwesomeIcon icon={faClock} />                        
-                        <h5>1k+</h5>
-                        <p>Products Delivered Properly Per Month</p>
-                    </div>
-                    <div>
-                        <FontAwesomeIcon icon={faUserGroup} />                        
-                        <h5>500+</h5>
-                        <p>New Users Every year</p>
-                    </div>
-                    <div>
-                        <FontAwesomeIcon icon={faComputer} />                        
-                        <h5>10k+</h5>
-                        <p>Computer Items Manufactured Successfully</p>
-                    </div>
-                </div>
-            </div>
+<div>
+            <h1 className='text-4xl font-bold uppercase my-5'>These stats say it all</h1>
+<div class="stats shadow bg-white">
+  
+  <div class="stat">
+    <div class="stat-figure text-2xl">
+<FontAwesomeIcon icon={faClock} />     
+</div>
+                <div class="stat-title text-lg">Total</div>
+    <div class="stat-value text-primary">1k+</div>
+    <div class="stat-desc">Products Delivered Properly Per Month</div>
+  </div>
+  
+  <div class="stat">
+                <div class="stat-figure text-2xl">
+    <FontAwesomeIcon icon={faUserGroup} />                        
+    </div>
+                <div class="stat-title text-lg">Yearly</div>
+    <div class="stat-value text-primary">500+</div>
+    <div class="stat-desc">New Users</div>
+  </div>
+  
+  <div class="stat">
+                <div class="stat-figure text-2xl">
+     <FontAwesomeIcon icon={faComputer} />                        
+    </div>
+                <div class="stat-title text-lg">On Average</div>
+     <div class="stat-value text-primary">10k+</div>
+    <div class="stat-desc">Computer Items Manufactured Successfully</div>
+  </div>
+  </div>
         </div>
     );
 };
