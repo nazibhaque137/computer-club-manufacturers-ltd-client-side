@@ -1,19 +1,19 @@
 import React from 'react';
-import './Banner.css';
 import manufacturing from '../../images/manufacturing.jpg';
 
 const Banner = () => {
     return (
-            <div className="banner-container">
-            <div className="banner-text-container">
-                <h1 className="text-left">The Ultimate Club of Manufacture</h1>
-                <p className="text-left">Welcome to Computer Club Manufacturers Ltd. We are the pro of manufacturing from A to Z for Computers. Just give us a try!</p>
-                <button className="btn btn-primary">Get Started</button>
+
+ <div className="hero min-h-screen">
+            <div className="hero-content flex-col lg:flex-row-reverse">
+                <img alt="manufacturing" src={manufacturing} className="max-w-sm rounded-lg shadow-2xl " />
+                <div>
+                    <h1 className="text-5xl font-bold">The Ultimate Club of Computer Manufacturing</h1>
+                    <p className="py-6">Welcome to Computer Club Manufacturers Ltd. We are the pro of manufacturing from A to Z for Computers. Just give us a try!</p>
+                    <button className="btn btn-primary">Get Started</button>
+                </div>
             </div>
-            <div className="banner-img-container">
-                <img src={manufacturing} className="banner-img" />
-            </div>
-            </div>
+        </div>
     );
 };
 
