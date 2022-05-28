@@ -2,11 +2,9 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className="p-10">
-            <div className='footer'>
+        <footer class="footer footer-center p-4 bg-base-300 text-base-content">
             <div>
-                <p>Copyright © 2022 - All right reserved</p>
-            </div>
+                <p>Copyright © 2022 - All right reserved by Computer Club Manufacturers Ltd.</p>
             </div>
         </footer>
     );
