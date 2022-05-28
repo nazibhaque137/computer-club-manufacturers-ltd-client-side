@@ -1,3 +1,12 @@
+# Website Name: The Computer Club Manufacturers
+Live Site Link: https://manufacturer-website-c90c2.web.app/
+About The Site: 
+* A Computer manufacturer site where users can purchase their needed computer parts by creating an account here 
+* Users can maintain their own Dashboard to Track and Update their orders and manage their profile
+* Admins can manage the orders and products from different Admin-only options
+* Email/Password Authentication and Google Sign-in are implemented in this site through Firebase
+* Data is stored through Mongo DB 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -9,7 +18,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
