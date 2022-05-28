@@ -6,15 +6,20 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import RequireAuth from './components/Shared/RequireAuth';
 import RequireAdmin from './components/Shared/RequireAdmin';
-
 import Header from './components/Shared/Header';
 import Footer from './components/Shared/Footer';
+
 import Purchase from './components/Purchase/Purchase';
 import Dashboard from './components/Dashboard/Dashboard';
 import MyOrders from './components/Dashboard/MyOrders';
 import AddReview from './components/Dashboard/AddReview';
 import MyProfile from './components/Dashboard/MyProfile';
-import Users from './components/Dashboard/Users';
+
+import ManageOrders from './components/Dashboard/ManageOrders';
+import AddItem from './components/Dashboard/AddItem';
+import MakeAdmin from './components/Dashboard/MakeAdmin';
+import ManageItems from './components/Dashboard/ManageItems';
+
 
 import Blogs from './components/Blogs/Blogs';
 import MyPortfolio from './components/MyPortfolio/MyPortfolio';
@@ -38,10 +43,10 @@ function App() {
           <Route path="add-review" element={<AddReview></AddReview>}></Route>
           <Route path="my-profile" element={<MyProfile></MyProfile>}></Route>
           
-          <Route path="manage-orders" element={<MyProfile></MyProfile>}></Route>
-          <Route path="add-product" element={<MyProfile></MyProfile>}></Route>
-          <Route path="make-admin" element={<RequireAdmin><Users></Users></RequireAdmin>}></Route>
-          <Route path="manage-products" element={<MyProfile></MyProfile>}></Route>
+          <Route path="manage-orders" element={<RequireAdmin><ManageOrders></ManageOrders></RequireAdmin>}></Route>
+          <Route path="add-item" element={<RequireAdmin><AddItem></AddItem></RequireAdmin>}></Route>
+          <Route path="make-admin" element={<RequireAdmin><MakeAdmin></MakeAdmin></RequireAdmin>}></Route>
+          <Route path="manage-items" element={<RequireAdmin><ManageItems></ManageItems></RequireAdmin>}></Route>
         </Route>
         
         <Route path="blogs" element={<Blogs></Blogs>}></Route>
