@@ -1,16 +1,20 @@
 import React from 'react';
-import './Review.css';
 
 const Review = ({ review }) => {
-    const { _id, name, rating, description } = review;
+    const { _id, rating, description } = review;
 
 
     return (
-        <div className='review-container'>
-            <h1>{name}</h1>
-            <h2>{rating}</h2>
-            <p>{description}</p>
-        </div>
+        <div className='grid place-items-center'>
+        <div class="bg-slate-100 card w-96 bg-base-100 shadow-xl">
+                <div class="card-body items-center text-center">
+    <h2 class="card-title">
+      {rating} / 5
+    </h2>
+    <p>{description}</p>
+  </div>
+</div>
+</div>
     );
 };
 
