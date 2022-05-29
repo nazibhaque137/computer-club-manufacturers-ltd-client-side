@@ -4,7 +4,7 @@ const useItemInfo = itemId => {
     const [item, setItem] = useState({});
 
     useEffect(() => {
-        const url = `http://localhost:5000/item/${itemId}`;
+        const url = `https://lit-basin-85287.herokuapp.com/item/${itemId}`;
         console.log(url);
         fetch(url)
             .then(res => res.json())

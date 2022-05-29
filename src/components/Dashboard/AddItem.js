@@ -32,7 +32,7 @@ const AddDoctor = () => {
                         price_per_unit: data.price_per_unit
                     }
                     // send to your database 
-                    fetch('http://localhost:5000/item', {
+                    fetch('https://lit-basin-85287.herokuapp.com/item', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

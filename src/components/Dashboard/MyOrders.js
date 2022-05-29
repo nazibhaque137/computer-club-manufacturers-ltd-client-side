@@ -11,7 +11,7 @@ const MyOrders = () => {
 
     const [deletingOrder, setDeletingOrder] = useState(null);
 
-    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`http://localhost:5000/order?user=${user.email}`).then(res => res.json()));
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`https://lit-basin-85287.herokuapp.com/order?user=${user.email}`).then(res => res.json()));
 
     if (isLoading) {
         return <Loading></Loading>

@@ -27,7 +27,7 @@ const PurchasePage = () => {
             quantity: data.quantity.value
         }
         
-        const url = "http://localhost:5000/order";
+        const url = "https://lit-basin-85287.herokuapp.com/order";
         fetch(url, {
             method: 'POST',
             headers: {

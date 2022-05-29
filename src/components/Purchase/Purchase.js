@@ -26,7 +26,7 @@ const Purchase = () => {
             phone: event.target.phone.value,
             quantity: event.target.quantity.value
         }
-        axios.post('http://localhost:5000/order', order)
+        axios.post('https://lit-basin-85287.herokuapp.com/order', order)
             .then(response => {
                 const { data } = response;
                 if (data.insertedId) {

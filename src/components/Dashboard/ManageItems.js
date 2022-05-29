@@ -7,7 +7,7 @@ import ItemRow from './ItemRow';
 const ManageItems = () => {
     const [deletingItem, setDeletingItem] = useState(null);
     
-    const { data: items, isLoading, refetch } = useQuery('items', () => fetch('http://localhost:5000/item', {
+    const { data: items, isLoading, refetch } = useQuery('items', () => fetch('https://lit-basin-85287.herokuapp.com/item', {
         method: 'GET',
         /*
          headers: {

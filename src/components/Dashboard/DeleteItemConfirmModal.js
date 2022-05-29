@@ -6,7 +6,7 @@ const DeleteItemConfirmModal = ({ deletingItem, refetch, setDeletingItem }) => {
 
     const handleItemDelete = () => {
         /*
-        fetch(`http://localhost:5000/item/${_id}`, {
+        fetch(`https://lit-basin-85287.herokuapp.com/item/${_id}`, {
             method: 'DELETE',
 
         })
