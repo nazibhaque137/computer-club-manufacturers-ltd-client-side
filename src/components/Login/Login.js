@@ -16,19 +16,21 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    const [token] = useToken(user || gUser);
+    //const [token] = useToken(user || gUser);
 
     let signInError;
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
+
+/*
     useEffect( () =>{
         if (token) {
             navigate(from, { replace: true });
         }
     }, [token, from, navigate])
-
+*/
     if (loading || gLoading) {
         return <Loading></Loading>
     }
@@ -37,13 +39,19 @@ const Login = () => {
         signInError= <p className='text-red-500'><small>{error?.message || gError?.message }</small></p>
     }
 
+    if (user) {
+        navigate(from, { replace: true })
+    }
+
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password);
     }
 
+
+
     return (
-        <div className='flex h-screen justify-center items-center'>
-            <div className="card w-96 bg-base-100 shadow-xl">
+        <div className='flex justify-center items-center'>
+            <div className="card w-96 bg-base-100 shadow-xl bg-white">
                 <div className="card-body">
                     <h2 className="text-center text-2xl font-bold">Login</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -55,7 +63,7 @@ const Login = () => {
                             <input
                                 type="email"
                                 placeholder="Your Email"
-                                className="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs bg-white"
                                 {...register("email", {
                                     required: {
                                         value: true,
@@ -79,7 +87,7 @@ const Login = () => {
                             <input
                                 type="password"
                                 placeholder="Password"
-                                className="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs bg-white"
                                 {...register("password", {
                                     required: {
                                         value: true,
@@ -100,11 +108,11 @@ const Login = () => {
                         {signInError}
                         <input className='btn w-full max-w-xs text-white' type="submit" value="Login" />
                     </form>
-                    <p><small>New to Doctors Portal <Link className='text-primary' to="/signup">Create New Account</Link></small></p>
-                    <div className="divider">OR</div>
+                    <p><small>New user? <Link className='text-primary' to="/register">Create New Account</Link></small></p>
+                    <div className="divider">YOU CAN ALSO</div>
                     <button
                         onClick={() => signInWithGoogle()}
-                        className="btn btn-outline"
+                        className="btn btn-primary"
                     >Continue with Google</button>
                 </div>
             </div>

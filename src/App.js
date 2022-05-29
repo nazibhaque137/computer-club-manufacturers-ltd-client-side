@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import RequireAuth from './components/Shared/RequireAuth';
 import RequireAdmin from './components/Shared/RequireAdmin';
+
 import Header from './components/Shared/Header';
 import Footer from './components/Shared/Footer';
 
@@ -34,9 +35,9 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
-        <Route path="/home" element={<Home></Home>}></Route>
+        <Route path="home" element={<Home></Home>}></Route>
 
-        <Route path="/purchase/:itemId" element={<RequireAuth><Purchase></Purchase></RequireAuth>}></Route>
+        <Route path="purchase/:itemId" element={<RequireAuth><Purchase></Purchase></RequireAuth>}></Route>
 
         <Route path="dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
           <Route index element={<MyOrders></MyOrders>}></Route>
@@ -51,8 +52,8 @@ function App() {
         
         <Route path="blogs" element={<Blogs></Blogs>}></Route>
         <Route path="my-portfolio" element={<MyPortfolio></MyPortfolio>}></Route>
-        <Route path="/login" element={<Login></Login>}></Route>
-        <Route path="/register" element={<Register></Register>}></Route>
+        <Route path="login" element={<Login></Login>}></Route>
+        <Route path="register" element={<Register></Register>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
         </Routes>
         <Footer></Footer>

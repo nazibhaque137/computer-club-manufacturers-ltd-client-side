@@ -3,7 +3,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
 
 const Register = () => {
@@ -18,11 +18,12 @@ const Register = () => {
 
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-    const [token] = useToken(user || gUser);
+    //const [token] = useToken(user || gUser);
+    let signInError;
 
     const navigate = useNavigate();
-
-    let signInError;
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     if (loading || gLoading || updating) {
         return <Loading></Loading>
@@ -31,9 +32,14 @@ const Register = () => {
     if (error || gError || updateError) {
         signInError = <p className='text-red-500'><small>{error?.message || gError?.message || updateError?.message}</small></p>
     }
-
+/*
     if (token) {
         navigate('/purchase');
+    }
+*/
+
+    if (user) {
+        navigate(from, { replace: true })
     }
 
     const onSubmit = async data => {
@@ -43,9 +49,9 @@ const Register = () => {
     }
     return (
         <div className='flex h-screen justify-center items-center'>
-            <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card w-96 bg-base-100 shadow-xl bg-white">
                 <div className="card-body">
-                    <h2 className="text-center text-2xl font-bold">Sign Up</h2>
+                    <h2 className="text-center text-2xl font-bold">Register</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
 
                         <div className="form-control w-full max-w-xs">
@@ -55,7 +61,7 @@ const Register = () => {
                             <input
                                 type="text"
                                 placeholder="Your Name"
-                                className="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs bg-white"
                                 {...register("name", {
                                     required: {
                                         value: true,
@@ -68,14 +74,14 @@ const Register = () => {
                             </label>
                         </div>
 
-                        <div className="form-control w-full max-w-xs">
+                        <div className="form-control w-full max-w-xs bg-white">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
                             <input
                                 type="email"
                                 placeholder="Your Email"
-                                className="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs bg-white"
                                 {...register("email", {
                                     required: {
                                         value: true,
@@ -99,7 +105,7 @@ const Register = () => {
                             <input
                                 type="password"
                                 placeholder="Password"
-                                className="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs bg-white"
                                 {...register("password", {
                                     required: {
                                         value: true,
@@ -121,10 +127,10 @@ const Register = () => {
                         <input className='btn w-full max-w-xs text-white' type="submit" value="Sign Up" />
                     </form>
                     <p><small>Already have an account? <Link className='text-primary' to="/login">Please login</Link></small></p>
-                    <div className="divider">OR</div>
+                    <div className="divider">YOU CAN ALSO</div>
                     <button
                         onClick={() => signInWithGoogle()}
-                        className="btn btn-outline"
+                        className="btn btn-primary"
                     >Continue with Google</button>
                 </div>
             </div>

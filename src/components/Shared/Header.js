@@ -15,7 +15,7 @@ const Header = () => {
     }
 
     return (
-        <div className="header">
+        <div className="header text-center">
             <>
                 <Navbar collapseOnSelect expand="lg" sticky='top' bg="dark" variant="dark">
                     <Container>
@@ -28,12 +28,13 @@ const Header = () => {
                                 {
                                     user && <>
                                         <Nav.Link href="dashboard">Dashboard</Nav.Link>
+                                        <Nav.Link href="#">{user.displayName}</Nav.Link>
                                     </>
                                 }
                                
                                 {
                                     user ?
-                                        <button className='btn btn-link text-white text-decoration-none' onClick={() => logOut()}>Sign Out</button>
+                                        <button className='btn btn-primary text-white text-decoration-none' onClick={() => logOut()}>Log Out</button>
                                         :
                                         <Nav.Link href="login">
                                             Login

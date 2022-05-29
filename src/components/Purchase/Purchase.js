@@ -26,7 +26,7 @@ const Purchase = () => {
             phone: event.target.phone.value,
             quantity: event.target.quantity.value
         }
-        axios.post('https://lit-basin-85287.herokuapp.com/order', order)
+        axios.post('http://localhost:5000/order', order)
             .then(response => {
                 const { data } = response;
                 if (data.insertedId) {
@@ -36,29 +36,36 @@ const Purchase = () => {
                 }
             })
     }
-
+/*
+    const handleOrderQuantity = (quantity) =>{
+        
+        if (quantity < item.min_order_quantity && quantity > item.available_quantity){
+            alert('Quantity invalid')
+    }
+    }
+*/
     return (
-        <div className='w-50 mx-auto'>
-            <h2>Item Details</h2>
+        <div className='w-50 mx-auto text-center'>
+            <h1 className='text-4xl font-bold uppercase my-5'>Item Details</h1>
             <img className='w-100 item-img' src={item.image} alt="" />
-            <h2>{item.name}</h2>
-            <p>BDT {item.price_per_unit}</p>
-            <p><small>{item.short_description}</small></p>
-            <p>Min Order Quantity: {item.min_order_quantity}</p>
-            <p>Available Quantity: {item.available_quantity}</p>
+            <h2><span className='text-primary'>Item Name: </span>{item.name}</h2>
+            <p><span className='text-primary'>BDT: </span>{item.price_per_unit}</p>
+            <p><span className='text-primary'>Description: </span><small>{item.short_description}</small></p>
+            <p><span className='text-primary'>Min Order Quantity: </span>{item.min_order_quantity}</p>
+            <p><span className='text-primary'>Available Quantity: </span>{item.available_quantity}</p>
 
 
-            <h2>Place Order For: {item.name}</h2>
-            <form onSubmit={handlePlaceOrder}>
-                <input className='w-100 mb-2' type="email" value={user?.email} name="email" placeholder='email' required readOnly disabled />
+            <h2>Place Order for {item.name}</h2>
+            <form className="my-5" onSubmit={handlePlaceOrder}>
+                <input className='input input-bordered bg-slate-50 w-100 mb-2 bg-white' type="email" value={user?.email} name="email" placeholder='email' required readOnly />
                 <br />
-                <input className='w-100 mb-2' type="text" value={user?.displayName} name="name" placeholder='name' required readOnly disabled />
+                <input className='input input-bordered bg-slate-50 w-100 mb-2 bg-white' type="text" value={user?.displayName} name="name" placeholder='name' required readOnly />
                 <br />
-                <input className='w-100 mb-2' type="text" name="address" placeholder='address' autoComplete='off' required />
+                <input className='input input-bordered bg-slate-50 w-100 mb-2' type="text" name="address" placeholder='Enter address' autoComplete='off' required />
                 <br />
-                <input className='w-100 mb-2' type="text" name="phone" placeholder='phone' required />
+                <input className='input input-bordered bg-slate-50 w-100 mb-2' type="text" name="phone" placeholder='Enter phone' required />
                 <br />
-                <input className='w-100 mb-2' type="text" name="quantity" placeholder='quantity' required />
+                <input className='input input-bordered bg-slate-50 w-100 mb-2' type="text" name="quantity" placeholder='Enter quantity' required />
                 <br />
                 <input className='btn btn-primary' type="submit" value="Place Order" />
             </form>

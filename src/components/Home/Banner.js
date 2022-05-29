@@ -3,8 +3,8 @@ import manufacturing from '../../images/manufacturing.jpg';
 
 const Banner = () => {
     return (
-
- <div className="hero min-h-screen">
+<div className="container-fluid">
+            <div className="hero h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <img alt="manufacturing" src={manufacturing} className="max-w-sm rounded-lg shadow-2xl " />
                 <div>
@@ -13,6 +13,7 @@ const Banner = () => {
                     <button className="btn btn-primary">Get Started</button>
                 </div>
             </div>
+        </div>
         </div>
     );
 };

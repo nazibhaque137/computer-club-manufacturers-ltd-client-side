@@ -4,16 +4,17 @@ import Items from './Items';
 import BusinessSummary from './BusinessSummary';
 import Reviews from './Reviews';
 import Contact from './Contact';
+import Offer from './Offer';
 
 const Home = () => {
 
     return (
-        <div className='home-container'>
-            <h1 className='text-primary text-center m-5'>Home</h1>
+        <div>
          <Banner></Banner>
          <Items></Items>
          <BusinessSummary></BusinessSummary>
          <Reviews></Reviews>
+         <Offer></Offer>
          <Contact></Contact>
         </div>
     );

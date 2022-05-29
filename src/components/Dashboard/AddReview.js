@@ -7,7 +7,7 @@ const AddReview = () => {
 
     const onSubmit = data => {
         console.log(data);
-        const url = "https://lit-basin-85287.herokuapp.com/review";
+        const url = "http://localhost:5000/review";
         fetch(url, {
             method: 'POST',
             headers: {
@@ -27,10 +27,9 @@ const AddReview = () => {
         <div className='w-50 mx-auto'>
             <h2>Add a Review</h2>
             <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
-                <input className='mb-2' placeholder='Name' {...register("name", { required: true, maxLength: 20 })} />
-                <input className='mb-2' placeholder='Rating' type="text" {...register("rating", { required: true })} />
-                <textarea className='mb-2' placeholder='Description' {...register("description", { required: true })} />
-                <input type="submit" value="Add Review" />
+                <input className='input input-bordered bg-white mb-2' placeholder='Rating (Between 1 to 5)' type="number" step="0.1" {...register("rating", { required: true, min: 1, max:5})} />
+                <textarea className='input input-bordered bg-white mb-2' placeholder='Description' type="text" {...register("description", { required: true })} />
+                <input className="btn btn-primary" type="submit" value="Add Review" />
             </form>
         </div>
     );

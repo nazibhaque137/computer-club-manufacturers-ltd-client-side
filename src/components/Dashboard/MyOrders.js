@@ -1,27 +1,22 @@
-import { signOut } from 'firebase/auth';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
-import axiosPrivate from '../../api/axiosPrivate';
 import auth from '../../firebase.init';
-
+import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading';
+import DeleteOrderConfirmModal from './DeleteOrderConfirmModal';
+import OrderRow from './OrderRow';
 
 const MyOrders = () => {
     const [user] = useAuthState(auth);
-    const [orders, setOrders] = useState([]);
-    const navigate = useNavigate();
 
-    useEffect(() => {
+    const [deletingOrder, setDeletingOrder] = useState(null);
 
-       if(user){
-           //const email = user?.email;
-           fetch(`https://lit-basin-85287.herokuapp.com/order?user=${user.email}`)
-           .then(res=>res.json())
-               .then(data => setOrders(data))
-           
-       }
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`http://localhost:5000/order?user=${user.email}`).then(res => res.json()));
 
-    }, [user])
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
     return ( 
         <div className='w-50 mx-auto'>
             <h2>Your orders: {orders.length}</h2>
@@ -30,23 +25,29 @@ const MyOrders = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>User Name</th>
                             <th>Item Name</th>
                             <th>Ordered Quantity</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                       {
-                           orders.map((order, index) => <tr key = {order._id}>
-                               <th>{index+1}</th>
-                               <td>{order.userName}</td>
-                               <td>{order.itemName}</td>
-                               <td>{order.quantity}</td>
-                               </tr>)
-                       }
+                        {
+                            orders.map((order, index) => <OrderRow
+                                key={order._id}
+                                order={order}
+                                index={index}
+                                refetch={refetch}
+                                setDeletingOrder={setDeletingOrder}
+                            ></OrderRow>)
+                        }
                     </tbody>
                 </table>
             </div>
+            {deletingOrder && <DeleteOrderConfirmModal
+                deletingOrder={deletingOrder}
+                refetch={refetch}
+                setDeletingOrder={setDeletingOrder}
+            ></DeleteOrderConfirmModal>}
         </div>
     );
 };
