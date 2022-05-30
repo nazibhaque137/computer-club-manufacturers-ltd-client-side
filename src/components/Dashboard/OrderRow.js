@@ -1,7 +1,7 @@
 import React from 'react';
 
 const OrderRow = ({ order, index, setDeletingOrder }) => {
-    const { itemName, quantity } = order;
+    const { _id, itemName, quantity } = order;
 
     return (
         <tr>

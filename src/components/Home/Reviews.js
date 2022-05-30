@@ -14,16 +14,17 @@ const Reviews = () => {
     return (
         <div className='my-28'>
             <div className='text-center'>
-                <h1 className='text-4xl font-bold uppercase my-5'>Reviews from our customers</h1>
+                <h1 className='text-4xl font-bold uppercase my-5'>Recent Reviews from our customers</h1>
             </div>
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
-                    {
-                        reviews.map(review => <Review
-                            key={review._id}
-                            review={review}
-                        >
-                        </Review>)
-                    }
+                {
+                    
+                    reviews.slice(reviews.length-3).map(review => <Review
+                        key={review._id}
+                        review={review}
+                    ></Review>)
+                       
+                }
                 </div>
             </div>
     );

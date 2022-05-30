@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useQuery } from 'react-query';
@@ -7,9 +7,9 @@ import DeleteOrderConfirmModal from './DeleteOrderConfirmModal';
 import OrderRow from './OrderRow';
 
 const MyOrders = () => {
-    const [user] = useAuthState(auth);
-
     const [deletingOrder, setDeletingOrder] = useState(null);
+
+    const [user] = useAuthState(auth);
 
     const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`https://lit-basin-85287.herokuapp.com/order?user=${user.email}`).then(res => res.json()));
 
@@ -31,6 +31,7 @@ const MyOrders = () => {
                         </tr>
                     </thead>
                     <tbody>
+
                         {
                             orders.map((order, index) => <OrderRow
                                 key={order._id}
@@ -39,7 +40,7 @@ const MyOrders = () => {
                                 refetch={refetch}
                                 setDeletingOrder={setDeletingOrder}
                             ></OrderRow>)
-                        }
+     }
                     </tbody>
                 </table>
             </div>
@@ -47,7 +48,7 @@ const MyOrders = () => {
                 deletingOrder={deletingOrder}
                 refetch={refetch}
                 setDeletingOrder={setDeletingOrder}
-            ></DeleteOrderConfirmModal>}
+                    ></DeleteOrderConfirmModal>}
         </div>
     );
 };

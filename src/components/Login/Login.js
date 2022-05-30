@@ -16,42 +16,42 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    //const [token] = useToken(user || gUser);
+    const [token] = useToken(user || gUser);
 
     let signInError;
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
-
-/*
-    useEffect( () =>{
+    //if login successful go to the page user wanted to go
+    useEffect(() => {
         if (token) {
             navigate(from, { replace: true });
         }
     }, [token, from, navigate])
-*/
+
+
     if (loading || gLoading) {
         return <Loading></Loading>
     }
 
-    if(error || gError){
-        signInError= <p className='text-red-500'><small>{error?.message || gError?.message }</small></p>
+    if (error || gError) {
+        signInError = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>
     }
 
-    if (user) {
-        navigate(from, { replace: true })
+    if(user || gUser) {
+        navigate(from, { replace: true }); 
     }
 
     const onSubmit = data => {
+        console.log(data);
         signInWithEmailAndPassword(data.email, data.password);
     }
 
 
-
     return (
         <div className='flex justify-center items-center'>
-            <div className="card w-96 bg-base-100 shadow-xl bg-white">
+            <div className="card w-96 bg-base-100 shadow-xl bg-white my-10">
                 <div className="card-body">
                     <h2 className="text-center text-2xl font-bold">Login</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>

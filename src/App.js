@@ -40,16 +40,16 @@ function App() {
         <Route path="purchase/:itemId" element={<RequireAuth><Purchase></Purchase></RequireAuth>}></Route>
 
         <Route path="dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
-          <Route index element={<MyOrders></MyOrders>}></Route>
+          <Route index element={<MyProfile></MyProfile>}></Route>
+          <Route path="my-orders" element={<MyOrders></MyOrders>}></Route>
           <Route path="add-review" element={<AddReview></AddReview>}></Route>
-          <Route path="my-profile" element={<MyProfile></MyProfile>}></Route>
-          
+
           <Route path="manage-orders" element={<RequireAdmin><ManageOrders></ManageOrders></RequireAdmin>}></Route>
           <Route path="add-item" element={<RequireAdmin><AddItem></AddItem></RequireAdmin>}></Route>
           <Route path="make-admin" element={<RequireAdmin><MakeAdmin></MakeAdmin></RequireAdmin>}></Route>
-          <Route path="manage-items" element={<RequireAdmin><ManageItems></ManageItems></RequireAdmin>}></Route>
+          <Route path="manage-items" element={<RequireAdmin><ManageItems></ManageItems></ RequireAdmin>}></Route>
         </Route>
-        
+
         <Route path="blogs" element={<Blogs></Blogs>}></Route>
         <Route path="my-portfolio" element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path="login" element={<Login></Login>}></Route>

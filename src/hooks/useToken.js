@@ -5,6 +5,8 @@ const useToken = user => {
     useEffect(() => {
         const email = user?.user?.email;
         const currentUser = { email: email };
+
+        //if new email (new reg user) then send to db
         if (email) {
             fetch(`https://lit-basin-85287.herokuapp.com/user/${email}`, {
                 method: 'PUT',
@@ -16,7 +18,6 @@ const useToken = user => {
                 .then(res => res.json())
                 .then(data => {
                     console.log('useToken Data', data);
-             
                     const accessToken = data.token;
                     localStorage.setItem('accessToken', accessToken);
                     setToken(accessToken);

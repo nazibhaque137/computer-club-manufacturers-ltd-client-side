@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import useItemInfo from '../../hooks/useItemInfo';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
@@ -12,8 +12,6 @@ const Purchase = () => {
     const [item] = useItemInfo(itemId);
     
     const [user] = useAuthState(auth);
-
-    const navigate = useNavigate();
 
     const handlePlaceOrder = event => {
         event.preventDefault();
@@ -32,7 +30,6 @@ const Purchase = () => {
                 if (data.insertedId) {
                     toast('Your order is placed!');
                     event.target.reset();
-                    navigate('/');
                 }
             })
     }
@@ -57,9 +54,9 @@ const Purchase = () => {
 
             <h2>Place Order for {item.name}</h2>
             <form className="my-5" onSubmit={handlePlaceOrder}>
-                <input className='input input-bordered bg-slate-50 w-100 mb-2 bg-white' type="email" value={user?.email} name="email" placeholder='email' required readOnly />
+                <input className='input input-bordered bg-slate-50 w-100 mb-2 bg-white' type="email" disabled value={user?.email || ''} name="email" placeholder='email'/>
                 <br />
-                <input className='input input-bordered bg-slate-50 w-100 mb-2 bg-white' type="text" value={user?.displayName} name="name" placeholder='name' required readOnly />
+                <input className='input input-bordered bg-slate-50 w-100 mb-2 bg-white' type="text" disabled value={user?.displayName || ''} name="name" placeholder='name'/>
                 <br />
                 <input className='input input-bordered bg-slate-50 w-100 mb-2' type="text" name="address" placeholder='Enter address' autoComplete='off' required />
                 <br />

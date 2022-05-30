@@ -1,8 +1,8 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const ItemRow = ({ item, index, setDeletingItem }) => {
-    const { name, image } = item;
+const ItemRow = ({ item, index, refetch, setDeletingItem }) => {
+    const { name, image, _id } = item;
 
     return (
         <tr>

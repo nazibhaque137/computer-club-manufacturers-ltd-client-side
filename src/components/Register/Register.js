@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
@@ -8,7 +8,7 @@ import useToken from '../../hooks/useToken';
 
 const Register = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [
         createUserWithEmailAndPassword,
         user,
@@ -16,14 +16,28 @@ const Register = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
+    //update user profile
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-    //const [token] = useToken(user || gUser);
-    let signInError;
+    const [token] = useToken(user || gUser);
 
+    let signInError;
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
+
+    /*
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate])
+
+    */
+
+    if (token) {
+        navigate('/');
+    }
 
     if (loading || gLoading || updating) {
         return <Loading></Loading>
@@ -32,24 +46,20 @@ const Register = () => {
     if (error || gError || updateError) {
         signInError = <p className='text-red-500'><small>{error?.message || gError?.message || updateError?.message}</small></p>
     }
-/*
-    if (token) {
-        navigate('/purchase');
-    }
-*/
 
-    if (user) {
-        navigate(from, { replace: true })
+    if (user || gUser) {
+        navigate('/');
     }
 
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
-        console.log('update done');
+        console.log('registration done');
     }
+
     return (
         <div className='flex h-screen justify-center items-center'>
-            <div className="card w-96 bg-base-100 shadow-xl bg-white">
+            <div className="card w-96 bg-base-100 shadow-xl bg-white my-10">
                 <div className="card-body">
                     <h2 className="text-center text-2xl font-bold">Register</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -74,7 +84,7 @@ const Register = () => {
                             </label>
                         </div>
 
-                        <div className="form-control w-full max-w-xs bg-white">
+                        <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
@@ -124,13 +134,13 @@ const Register = () => {
                         </div>
 
                         {signInError}
-                        <input className='btn w-full max-w-xs text-white' type="submit" value="Sign Up" />
+                        <input className='btn w-full max-w-xs text-white' type="submit" value="Register" />
                     </form>
                     <p><small>Already have an account? <Link className='text-primary' to="/login">Please login</Link></small></p>
                     <div className="divider">YOU CAN ALSO</div>
                     <button
                         onClick={() => signInWithGoogle()}
-                        className="btn btn-primary"
+                        className="btn btn-outline"
                     >Continue with Google</button>
                 </div>
             </div>

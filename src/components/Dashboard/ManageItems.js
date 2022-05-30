@@ -7,13 +7,10 @@ import ItemRow from './ItemRow';
 const ManageItems = () => {
     const [deletingItem, setDeletingItem] = useState(null);
     
-    const { data: items, isLoading, refetch } = useQuery('items', () => fetch('https://lit-basin-85287.herokuapp.com/item', {
-        method: 'GET',
-        /*
+    const { data: items, isLoading, refetch } = useQuery('items', () => fetch('https://lit-basin-85287.herokuapp.com/item', {        
          headers: {
              authorization: `Bearer ${localStorage.getItem('accessToken')}`
          }
-         */
     }).then(res => res.json()));
 
     if (isLoading) {
@@ -28,20 +25,21 @@ const ManageItems = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Avatar</th>
+                            <th>Image</th>
                             <th>Name</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             items.map((item, index) => <ItemRow
-                                key={item._id}
+                                key={item._key}
                                 item={item}
                                 index={index}
                                 refetch={refetch}
                                 setDeletingItem={setDeletingItem}
                             ></ItemRow>)
-                        }
+    }
                     </tbody>
                 </table>
             </div>
@@ -49,7 +47,7 @@ const ManageItems = () => {
                 deletingItem={deletingItem}
                 refetch={refetch}
                 setDeletingItem={setDeletingItem}
-            ></DeleteItemConfirmModal>}
+></DeleteItemConfirmModal>}
         </div>
     );
 };

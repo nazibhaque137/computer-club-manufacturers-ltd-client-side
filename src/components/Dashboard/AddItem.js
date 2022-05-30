@@ -59,7 +59,7 @@ const AddDoctor = () => {
     return (
         <div className="w-50 mx-auto">
             <h2 className="text-2xl">Add a New Item</h2>
-            <form className='d-flex flex-column ml-50' onSubmit={handleSubmit(onSubmit)}>
+            <form className='d-flex flex-column my-5' onSubmit={handleSubmit(onSubmit)}>
 
                 <div className="form-control w-full max-w-xs">
                     <label className="label">

@@ -14,7 +14,7 @@ const Items = () => {
     return (
     <div className='my-28'>
             <div className='text-center'>
-                <h1 className='text-4xl font-bold uppercase m-5'>Our Items</h1>
+                <h1 className='text-4xl font-bold uppercase m-5'>Our Latest Items</h1>
             </div>
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
                 {

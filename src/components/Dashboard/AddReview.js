@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 
 const AddReview = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = data => {
         console.log(data);
@@ -18,6 +18,7 @@ const AddReview = () => {
             .then(res => res.json())
             .then(result => {
                 toast('Your Review is posted!');
+                reset();
                 console.log(result);
             })
     };
